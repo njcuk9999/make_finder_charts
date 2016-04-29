@@ -15,9 +15,9 @@ import os
 # Define variables
 # =============================================================================
 # define location of fits file input (if using main program)
-workspace = '/local/home/ncook/Projects/Project8/Stage1'
-catpath = workspace + '/Data/Catalogues/NJCM_full_e7_forcm.fits'
-psave = workspace + '/Plots/finder_charts'
+workspace = './'
+catpath = workspace + 'catalogue.fits'
+psave = workspace + '/Plots/'
 # -----------------------------------------------------------------------------
 # define catalogue input columns (None where possible to skip)
 idcol = 'WISE_id'
