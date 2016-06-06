@@ -1,15 +1,16 @@
 # make_finder_charts
 
-    list_charts():
-    """
-    Prints user readable form of the surveys available
-    :return:
-    """
+```python
+list_charts()
+```
+Prints user readable form of the surveys available
 
-    make_chart(ra=None, dec=None, p=None, name='', pmra=None, pmde=None,
-               savename='./finder', show=False, **kwargs)
-    """
-    Plots the finder chart
+
+```python
+make_chart(ra=None, dec=None, p=None, name='', pmra=None, pmde=None, savename='./finder', show=False, **kwargs)
+```
+
+Plots the finder chart
     :param ra: array or None, right ascension (floats)
     :param dec: array or None, declination (floats)
     :param p: array or None, SIMBAD or NED name (for resolver)
@@ -64,4 +65,40 @@
     - pmt: factor proper motions are scaled by
 
     :return:
-    """
+
+### Example code
+
+```python
+# get data
+# odata = get_data(catpath, idcol, racol, deccol, pmracol, pmdecol,
+#                  pmunit, pmtime)
+# ras, decs, ids, pmras, pmdes = odata
+etacarinae = SkyCoord.from_name('Eta Carinae').icrs
+
+
+ras = [85.24583333, etacarinae.ra.value]
+decs = [-2.4583333, etacarinae.dec.value]
+ids = ['Horse Head Nebula', 'Eta Carinae']
+pmras = [100*pmunit, 100*pmunit]
+pmdes = [100*pmunit, 100*pmunit]
+# -------------------------------------------------------------------------
+# loop round each target
+for row in range(len(ids)):
+    # ---------------------------------------------------------------------
+    # print progress
+    if idcol is not None:
+        tstring = 'Target: {0}'.format(ids[row])
+    else:
+        tstring = 'Row: {0}'.format(row + 1)
+    print ('\n{0}\n{1}\n{0}\n'.format('=' * 50, tstring))
+    # ---------------------------------------------------------------------
+    # plot finder chart
+    plotkwargs = dict(ra=ras[row], dec=decs[row], name=ids[row],
+                      pmra=pmras[row], pmde=pmdes[row], savename=psave,
+                      show=pshow, survey=survey, radius=size_of_image,
+                      colour=rgb, size=psize, pixels=res_of_image,
+                      ct=ctarget, co=cother, sc=scale, scl=scalelabel,
+                      gridc=cgrid, gridl=lgrid, stretches=stretch,
+                      cmap=cmap, coord=coords, ms=s_target, pmt=pmtime)
+    g = make_chart(**plotkwargs)
+```
