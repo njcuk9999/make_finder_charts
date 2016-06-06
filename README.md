@@ -7,7 +7,8 @@ Prints user readable form of the surveys available
 
 
 ```python
-make_chart(ra=None, dec=None, p=None, name='', pmra=None, pmde=None, savename='./finder', show=False, **kwargs)
+make_chart(ra=None, dec=None, p=None, name='', pmra=None, pmde=None, 
+           savename='./finder', show=False, **kwargs)
 ```
 
 Plots the finder chart
