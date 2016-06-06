@@ -70,6 +70,59 @@ Plots the finder chart
 ### Example code
 
 ```python
+# define location of fits file input (if using main program)
+workspace = './'
+catpath = workspace + 'catalogue.fits'
+psave = workspace + '/Plots/'
+# -----------------------------------------------------------------------------
+# define catalogue input columns (None where possible to skip)
+idcol = 'WISE_id'
+racol = 'ra'
+deccol = 'dec'
+pmracol = 'pmra'
+pmdecol = 'pmde'
+pmunit = u.arcsec * u.yr ** -1  # units of pm in catalogue
+pmtime = 1000.0  # scale proper motions up (by this many times)
+# -----------------------------------------------------------------------------
+# define survey (can find info in SkyView.list_surveys())
+# SDSSg, SDSSi, SDSSr, SDSSu, SDSSz, 2MASS-J, 2MASS-H, 2MASS-K, UKIDSS-Y,
+# UKIDSS-J, UKIDSS-H, UKIDSS-K, WISE 3.4, WISE 4.6, WISE 12, WISE 22
+# this is from red --> blue
+survey = ['2MASS-K', '2MASS-H', '2MASS-J']
+# survey = ['WISE 12', 'WISE 4.6', 'WISE 3.4']
+# survey = ['SDSSg', 'SDSSi', 'SDSSz']
+# set coord system "J2000", "B1950", "Galactic","E2000", "ICRS"
+coords = 'J2000'
+# size of image must have units
+size_of_image = (300.0 / 3600) * u.deg
+# pixels in x and y (will be square)
+res_of_image = 1024
+# -----------------------------------------------------------------------------
+# scale to add
+scale = (60.0 / 3600) * u.deg  # must be an astropy quantity
+scalelabel = '1 arcmin'
+# -----------------------------------------------------------------------------
+# plot rgb and if True set stretch
+rgb = True
+# for rgb define the stretch in red green and blue colours
+stretch = ['log', 'log', 'log']
+# if rgb is False set cmap for single colour (i.e. 'gist_heat', 'gist_gray')
+cmap = 'gist_gray'
+# -----------------------------------------------------------------------------
+# if true show instead of saving
+pshow = True
+# colour of target
+ctarget = 'r'
+# marker size of target
+s_target = 300
+# colour of compass/scale
+cother = 'y'
+# size of figure
+psize = (10, 10)
+# colour of grid
+cgrid = '0.75'
+# linestyle of grid
+lgrid = '--'
 # get data
 # odata = get_data(catpath, idcol, racol, deccol, pmracol, pmdecol,
 #                  pmunit, pmtime)
