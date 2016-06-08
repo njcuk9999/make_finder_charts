@@ -21,8 +21,7 @@ psave = workspace + '/Plots/'
 # -----------------------------------------------------------------------------
 # define catalogue input columns (None where possible to skip)
 idcol = 'WISE_id'
-racol = 'ra'
-deccol = 'dec'
+racol, deccol = 'ra', 'dec'
 pmracol = 'pmra'
 pmdecol = 'pmde'
 pmunit = u.arcsec * u.yr ** -1  # units of pm in catalogue
